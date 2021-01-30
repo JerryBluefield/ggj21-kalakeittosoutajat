@@ -10,6 +10,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
 
     [SerializeField] private float rayDistance = 4f;
     [SerializeField] private Animator animator;
+    [SerializeField] private PlayerActions actions;
 
     private Coroutine moveCoroutine;
     private Coroutine turnCoroutine;
@@ -35,6 +36,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
             {
                 Debug.Log("Failed to find obj ThirdPersonVirtualCamera");
             }
+            actions = GetComponent<PlayerActions>();
             UpdateVision();
         }
     }
@@ -76,7 +78,15 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         //transform.eulerAngles += new Vector3(0, direction*90, 0);
         if(turnCoroutine == null && moveCoroutine == null)
         {
-            turnCoroutine = StartCoroutine(TurnCoroutine(targetEuler));
+            if (actions.TurnAction())
+            {
+                turnCoroutine = StartCoroutine(TurnCoroutine(targetEuler));
+            }
+            else
+            {
+                Debug.Log("Not enough action points for turning!");
+            }
+
         }
     }
 
@@ -104,17 +114,23 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     {
         if(adjacentNode != null)
         {
-            Vector3 newPos = adjacentNode.transform.position;
-            newPos.y = transform.position.y;
-            if(turnCoroutine == null && moveCoroutine == null)
+            if (actions.MoveForwardAction())
             {
-                moveCoroutine = StartCoroutine(MoveCoroutine(newPos));
+                Vector3 newPos = adjacentNode.transform.position;
+                newPos.y = transform.position.y;
+                if (turnCoroutine == null && moveCoroutine == null)
+                {
+                    moveCoroutine = StartCoroutine(MoveCoroutine(newPos));
+                }
             }
-
+            else
+            {
+                Debug.Log("Not enough action points for moving!");
+            }
         }
         else
         {
-            Debug.Log("Can't move!");
+            Debug.Log("Can't move! Something blocks the way I guess.");
         }
 
     }
