@@ -3,12 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundPlayer : MonoBehaviour
+public class SoundPlayer : Mirror.NetworkBehaviour
 {
     public static SoundPlayer Instance { get; private set; }
 
     private void Awake()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -26,6 +31,10 @@ public class SoundPlayer : MonoBehaviour
 
     internal void PlayBumpSound()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
         GetComponent<AudioSource>().PlayOneShot(bumpSound);
     }
 }
