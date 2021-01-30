@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Node
   - Wall
+  - Node
   layers:
   - Default
   - TransparentFX
@@ -16,8 +16,8 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
+  - Floor
+  - Wall
   - 
   - 
   - 
