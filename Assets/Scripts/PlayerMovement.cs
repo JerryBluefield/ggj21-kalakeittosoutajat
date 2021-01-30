@@ -141,6 +141,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         else
         {
             Debug.Log("Can't move! Something blocks the way I guess.");
+            SoundPlayer.Instance.PlayBumpSound();
         }
 
     }
