@@ -21,7 +21,7 @@ MonoBehaviour:
     x: -98
     y: -426
     width: 1432
-    height: 1601
+    height: 1602
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -100,18 +100,25 @@ VisualEffectResource:
       inputAdditional;\r\n#endif\r\n\r\n#if HAS_STRIPS\r\nRWBuffer<uint> stripDataBuffer;\r\n#endif\r\n\r\n#include
       \"Packages/com.unity.visualeffectgraph/Shaders/Common/VFXCommonCompute.hlsl\"\n#include
       \"Packages/com.unity.visualeffectgraph/Shaders/VFXCommon.hlsl\"\n\n\r\n\r\nvoid
-      PositionAABox_18D(inout float3 position, inout uint seed, float3 Box_center,
-      float3 Box_size) /*positionMode:Volume spawnMode:Random */\n{\n    position
-      = Box_size * (RAND3 - 0.5f) + Box_center;\n}\nvoid SetAttribute_EC596896(inout
-      float lifetime, inout uint seed, float A, float B) /*attribute:lifetime Composition:Add
-      Source:Slot Random:Uniform channels:XYZ */\n{\n    lifetime += lerp(A,B,RAND);\n}\nvoid
-      SetAttribute_AA7D638(inout float3 velocity, float3 Velocity) /*attribute:velocity
-      Composition:Add Source:Slot Random:Off channels:XYZ */\n{\n    velocity +=
-      Velocity;\n}\n\n\r\n\r\n#if HAS_STRIPS\r\nbool GetParticleIndex(inout uint
-      particleIndex, uint stripIndex)\r\n{\r\n\tuint relativeIndex;\r\n\tInterlockedAdd(STRIP_DATA(STRIP_NEXT_INDEX,
-      stripIndex), 1, relativeIndex);\r\n\tif (relativeIndex >= PARTICLE_PER_STRIP_COUNT)
-      // strip is full\r\n\t{\r\n\t\tInterlockedAdd(STRIP_DATA(STRIP_NEXT_INDEX,
-      stripIndex), -1); // Remove previous increment\r\n\t\treturn false;\r\n\t}\r\n\r\n\tparticleIndex
+      PositionAABox_0(inout float3 position, inout uint seed, float3 Box_center,
+      float3 Box_size) /*positionMode:Surface spawnMode:Random */\n{\n    \n    float
+      areaXY = max(Box_size.x * Box_size.y, VFX_EPSILON);\n    float areaXZ = max(Box_size.x
+      * Box_size.z, VFX_EPSILON);\n    float areaYZ = max(Box_size.y * Box_size.z,
+      VFX_EPSILON);\n    \n    float face = RAND * (areaXY + areaXZ + areaYZ);\n   
+      float flip = (RAND >= 0.5f) ? 0.5f : -0.5f;\n    float3 cube = float3(RAND2
+      - 0.5f, flip);\n    \n    if (face < areaXY)\n        cube = cube.xyz;\n   
+      else if(face < areaXY + areaXZ)\n        cube = cube.xzy;\n    else\n       
+      cube = cube.zxy;\n    \n    position = cube * Box_size + Box_center;\n    \n}\nvoid
+      SetAttribute_EC596896(inout float lifetime, inout uint seed, float A, float
+      B) /*attribute:lifetime Composition:Add Source:Slot Random:Uniform channels:XYZ
+      */\n{\n    lifetime += lerp(A,B,RAND);\n}\nvoid SetAttribute_AA7D638(inout
+      float3 velocity, float3 Velocity) /*attribute:velocity Composition:Add Source:Slot
+      Random:Off channels:XYZ */\n{\n    velocity += Velocity;\n}\n\n\r\n\r\n#if
+      HAS_STRIPS\r\nbool GetParticleIndex(inout uint particleIndex, uint stripIndex)\r\n{\r\n\tuint
+      relativeIndex;\r\n\tInterlockedAdd(STRIP_DATA(STRIP_NEXT_INDEX, stripIndex),
+      1, relativeIndex);\r\n\tif (relativeIndex >= PARTICLE_PER_STRIP_COUNT) // strip
+      is full\r\n\t{\r\n\t\tInterlockedAdd(STRIP_DATA(STRIP_NEXT_INDEX, stripIndex),
+      -1); // Remove previous increment\r\n\t\treturn false;\r\n\t}\r\n\r\n\tparticleIndex
       = stripIndex * PARTICLE_PER_STRIP_COUNT + ((STRIP_DATA(STRIP_FIRST_INDEX, stripIndex)
       + relativeIndex) % PARTICLE_PER_STRIP_COUNT);\r\n    return true;\r\n}\r\n#endif\r\n\r\n[numthreads(NB_THREADS_PER_GROUP,1,1)]\r\nvoid
       CSMain(uint3 groupId          : SV_GroupID,\r\n            uint3 groupThreadId   
@@ -145,7 +152,7 @@ VisualEffectResource:
       return;\r\n\r\n        const StripData stripData = GetStripDataFromStripIndex(stripIndex,
       PARTICLE_PER_STRIP_COUNT);\r\n\t\tInitStripAttributes(particleIndex, attributes,
       stripData);\r\n\t\t// TODO Change seed to be sure we're deterministic on random
-      with strip\r\n#endif\r\n        \r\n        PositionAABox_18D( /*inout */attributes.position, 
+      with strip\r\n#endif\r\n        \r\n        PositionAABox_0( /*inout */attributes.position, 
       /*inout */attributes.seed, Box_center_a, Box_size_a);\n        SetAttribute_EC596896(
       /*inout */attributes.lifetime,  /*inout */attributes.seed, A_b, B_b);\n       
       SetAttribute_AA7D638( /*inout */attributes.velocity, Velocity_c);\n       
@@ -2072,7 +2079,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614596}
   m_OutputSlots: []
   m_Disabled: 0
-  positionMode: 1
+  positionMode: 0
   spawnMode: 0
 --- !u!114 &8926484042661614596
 MonoBehaviour:
