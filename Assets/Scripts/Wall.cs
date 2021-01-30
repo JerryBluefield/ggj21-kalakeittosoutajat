@@ -47,9 +47,10 @@ public class Wall : MonoBehaviour
 
     private IEnumerator UpCoroutine()
     {
-        while (transform.position.y != 0)
+        float targetY = 0;
+        while (transform.position.y != targetY)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 0, transform.position.z), Time.deltaTime * 2);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, targetY, transform.position.z), Time.deltaTime * 2);
             yield return null;
         }
         col.enabled = true;
@@ -57,9 +58,10 @@ public class Wall : MonoBehaviour
 
     private IEnumerator DownCoroutine()
     {
-        while(transform.position.y != -2)
+        float targetY = -1.93f;
+        while(transform.position.y != targetY)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -2, transform.position.z),Time.deltaTime*2);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, targetY, transform.position.z),Time.deltaTime*2);
             yield return null;
         }
         col.enabled = false;
