@@ -10,6 +10,9 @@ public class PlayerMovement : Mirror.NetworkBehaviour
 
     [SerializeField] private float rayDistance = 4f;
     [SerializeField] private Animator animator;
+    [SerializeField] private float speed = 0.5f;
+    [SerializeField] private float animatorStartSpeed = 0.5f;
+    [SerializeField] private float animatorEndSpeed = 0.25f;
 
     private Coroutine moveCoroutine;
     private Coroutine turnCoroutine;
@@ -43,6 +46,12 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (moveCoroutine == null)
+        {
+            float animationValue = Mathf.MoveTowards(animator.GetFloat("Moving"), 0f, Time.deltaTime * animatorEndSpeed);
+            animator.SetFloat("Moving", animationValue);
+        }
+
         if (!isLocalPlayer)
         {
             return;
@@ -122,12 +131,16 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     IEnumerator MoveCoroutine(Vector3 newPos)
     {
         float transition = 0f;
-        float speed = 0.5f;
-        animator.SetFloat("Moving", Mathf.MoveTowards(1f, -1f, Time.deltaTime * speed));
-        //float movementLength = Vector3.Distance(transform.position, newPos);
+
+        float movementLength = Vector3.Distance(transform.position, newPos);
+
+
         var startPos = transform.position;
         while (transition < 1f)
         {
+            float animationValue = Mathf.MoveTowards(animator.GetFloat("Moving"), 1f, Time.deltaTime * animatorStartSpeed);
+            animator.SetFloat("Moving", animationValue);
+
             transition += Time.deltaTime * speed;
             transform.position = Vector3.Lerp(startPos, newPos, Mathf.SmoothStep(0.0f, 1.0f, transition));
 
@@ -136,7 +149,6 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         adjacentNode = null;
         UpdateVision();
         moveCoroutine = null;
-        animator.SetFloat("Moving", Mathf.MoveTowards(-1f, 1f, Time.deltaTime * speed));
     }
 
     private void UpdateVision()

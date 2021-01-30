@@ -229,6 +229,9 @@ MonoBehaviour:
   syncInterval: 0.1
   rayDistance: 4
   animator: {fileID: 5827633076599855023}
+  speed: 0.5
+  animatorStartSpeed: 2
+  animatorEndSpeed: 2
 --- !u!114 &8372538925683124257
 MonoBehaviour:
   m_ObjectHideFlags: 0
