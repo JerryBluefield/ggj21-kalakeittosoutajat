@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerActions : MonoBehaviour
+public class PlayerActions : Mirror.NetworkBehaviour
 {
     public int CurrentActions => currentActions;
 
