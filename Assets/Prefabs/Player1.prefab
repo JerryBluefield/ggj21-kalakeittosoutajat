@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 564862460291335587}
   - component: {fileID: 8372538925683124257}
   - component: {fileID: 573113740150376191}
+  - component: {fileID: 2255966625245589665}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -222,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf47c8b139aa9164393ff4aafb9985ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
   rayDistance: 4
 --- !u!114 &8372538925683124257
 MonoBehaviour:
@@ -257,6 +259,19 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+--- !u!114 &2255966625245589665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564862460291335588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99916f8f557a7d439113227326c753d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mistEffect: {fileID: 619501095}
 --- !u!1 &564862461250657931
 GameObject:
   m_ObjectHideFlags: 0
