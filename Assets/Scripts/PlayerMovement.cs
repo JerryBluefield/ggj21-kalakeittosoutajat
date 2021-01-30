@@ -6,17 +6,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Node adjacentNode;
-    private float startTime;
-    private float movementLength;
-    public float speed = 1.0F;
-    private bool moving;
-    Vector3 oldPos;
-    Vector3 newPos;
 
     [SerializeField] private float rayDistance = 4f;
     // Start is called before the first frame update
     void Start()
     {
+
         UpdateVision();
     }
 
@@ -41,27 +36,28 @@ public class PlayerMovement : MonoBehaviour
         {
             Turn(-1);
         }
-        if (moving)
-        {
-            float distCovered = (Time.time - startTime) * speed;
-
-            float fractionOfJourney = distCovered / movementLength;
-            if (transform.position != newPos)
-            {
-                transform.position = Vector3.Lerp(oldPos, newPos, fractionOfJourney);
-            }
-            else
-            {
-                oldPos = transform.position;
-                moving = false;
-            }
-        }
-
     }
 
     private void Turn(int direction)
     {
-        transform.eulerAngles += new Vector3(0, direction*90, 0);
+        Vector3 targetEuler = transform.eulerAngles + (direction * new Vector3(0, 90, 0));
+        //transform.eulerAngles += new Vector3(0, direction*90, 0);
+        StartCoroutine(TurnCoroutine(targetEuler));
+    }
+
+    private IEnumerator TurnCoroutine(Vector3 targetEuler)
+    {
+
+        float transition = 0f;
+        float speed = 1;
+        while (transition < 1f)
+        {
+            transition += Time.deltaTime * speed;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetEuler), transition);
+
+            yield return null;
+        }
+        adjacentNode = null;
         UpdateVision();
     }
 
@@ -69,19 +65,30 @@ public class PlayerMovement : MonoBehaviour
     {
         if(adjacentNode != null)
         {
-            startTime = Time.time;
-            newPos = adjacentNode.transform.position;
+            Vector3 newPos = adjacentNode.transform.position;
             newPos.y = transform.position.y;
-            movementLength = Vector3.Distance(transform.position, newPos);
-            moving = true;
-            adjacentNode = null;
-            UpdateVision();
+            StartCoroutine(MoveCoroutine(newPos));
         }
         else
         {
             Debug.Log("Can't move!");
         }
 
+    }
+    IEnumerator MoveCoroutine(Vector3 newPos)
+    {
+        float transition = 0f;
+        float speed = 0.5f;
+        //float movementLength = Vector3.Distance(transform.position, newPos);
+        while (transition < 1f)
+        {
+            transition += Time.deltaTime * speed;
+            transform.position = Vector3.Lerp(transform.position, newPos, transition);
+
+            yield return null;
+        }
+        adjacentNode = null;
+        UpdateVision();
     }
 
     private void UpdateVision()
