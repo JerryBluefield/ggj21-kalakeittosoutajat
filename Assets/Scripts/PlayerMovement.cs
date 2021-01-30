@@ -9,6 +9,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     private Node adjacentNode;
 
     [SerializeField] private float rayDistance = 4f;
+    [SerializeField] private Animator animator;
 
     private Coroutine moveCoroutine;
     private Coroutine turnCoroutine;
@@ -45,6 +46,9 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         {
             return;
         }
+
+        // Moving parameter: 0 is idle / 1 is moving.
+        animator.SetFloat("Moving", Mathf.InverseLerp(-1, 1, Mathf.Sin(Time.time)));
 
         if (Input.GetKey(KeyCode.V))
         {
