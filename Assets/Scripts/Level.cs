@@ -5,16 +5,39 @@ using UnityEngine;
 public class Level : MonoBehaviour
 {
     [SerializeField] private List<Mesh> wallModels;
+    [SerializeField] private List<Mesh> floorModels;
+    [SerializeField] private List<Mesh> columnModels;
     // Start is called before the first frame update
     void Start()
     {
         RandomizeWallModels();
+        RandomizeFloorModels();
+        RandomizeColumnModels();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void RandomizeFloorModels()
     {
-        
+        var floors = GetComponentsInChildren<Node>();
+
+        for (int i = 0; i < floors.Length; i++)
+        {
+            int randomIndex = Random.Range(0, floorModels.Count);
+            floors[i].GetComponent<MeshFilter>().mesh = floorModels[randomIndex];
+        }
+    }
+
+    private void RandomizeColumnModels()
+    {
+        var columns = GetComponentsInChildren<Transform>();
+
+        for (int i = 0; i < columns.Length; i++)
+        {
+            if (columns[i].CompareTag("Column"))
+            {
+                int randomIndex = Random.Range(0, columnModels.Count);
+                columns[i].GetComponent<MeshFilter>().mesh = columnModels[randomIndex];
+            }
+        }
     }
 
     private void RandomizeWallModels()
@@ -29,6 +52,5 @@ public class Level : MonoBehaviour
                 walls[i].GetComponent<MeshFilter>().mesh = wallModels[randomIndex];
             }
         }
-
     }
 }
