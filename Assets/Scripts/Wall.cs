@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
+    public bool OuterWall => outerWall;
     private Collider col;
     private Coroutine moveCoroutine;
+    [SerializeField] private bool outerWall = false;
     // Start is called before the first frame update
     void Start()
     {
