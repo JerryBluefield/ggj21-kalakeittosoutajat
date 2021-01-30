@@ -9,7 +9,16 @@ public class Wall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         col = GetComponent<Collider>();
+        if (transform.position.y == 0)
+        {
+            col.enabled = true;
+        }
+        else
+        {
+            col.enabled = false;
+        }
     }
 
     // Update is called once per frame
