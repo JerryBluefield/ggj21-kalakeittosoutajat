@@ -9,7 +9,7 @@ BoxCollider:
   m_GameObject: {fileID: 737647081540740394}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 2.1, z: 0.20999998}
   m_Center: {x: 0, y: 0.95, z: 0.000000037252903}
@@ -34,7 +34,7 @@ BoxCollider:
   m_GameObject: {fileID: 1202333235951558339}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.0000005, y: 2.1, z: 0.21000002}
   m_Center: {x: 0, y: 0.95, z: 0.00000051409006}
@@ -320,7 +320,7 @@ BoxCollider:
   m_GameObject: {fileID: 2385070990611221980}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.0000005, y: 2.1, z: 0.21000002}
   m_Center: {x: -0.00000023841858, y: 0.95, z: 0.00000003725291}
@@ -345,7 +345,7 @@ BoxCollider:
   m_GameObject: {fileID: 2796520717595110641}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.0000005, y: 2.1, z: 0.21000002}
   m_Center: {x: 0, y: 0.95, z: 0.00000051409006}
@@ -370,7 +370,7 @@ BoxCollider:
   m_GameObject: {fileID: 2978339525047032838}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 2.1, z: 0.20999998}
   m_Center: {x: 0, y: 0.95, z: 0.000000037252903}
@@ -812,7 +812,7 @@ BoxCollider:
   m_GameObject: {fileID: 6849633933467387094}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 2.1, z: 0.20999998}
   m_Center: {x: 0, y: 0.95, z: 0.000000037252903}
@@ -837,7 +837,7 @@ BoxCollider:
   m_GameObject: {fileID: 7994601578948832060}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.0000005, y: 2.1, z: 0.21000002}
   m_Center: {x: 0, y: 0.95, z: 0.00000003725291}
@@ -862,7 +862,7 @@ BoxCollider:
   m_GameObject: {fileID: 8792754674159787472}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2, y: 2.1, z: 0.20999998}
   m_Center: {x: 0, y: 0.95, z: 0.000000037252903}
