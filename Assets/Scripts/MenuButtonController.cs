@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuButtonController : MonoBehaviour
 {
@@ -47,6 +48,29 @@ public class MenuButtonController : MonoBehaviour
         else
         {
             keyDown = false;
+        }
+    }
+
+    public void select(int index)
+    {
+        Debug.Log("Main menu index select: " + index);
+        if (index == 0)
+        {
+            // host game
+            KalakeittoStatic.isHost = true;
+            SceneManager.LoadScene("Main");
+        }
+        else if (index == 1)
+        {
+            // join game
+        }
+        else if (index == 2)
+        {
+            // exit
+        }
+        else
+        {
+            Debug.Log("invalid menu index");
         }
     }
 }
