@@ -4,6 +4,6 @@ using UnityEngine;
 
 public static class KalakeittoStatic
 {
-    public static bool isHost = false;
-    public static string joinIp = "";
+    public static bool isHost = true;
+    public static string joinIp = "localhost";
 }
