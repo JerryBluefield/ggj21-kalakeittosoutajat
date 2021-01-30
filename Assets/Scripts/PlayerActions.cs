@@ -33,16 +33,19 @@ public class PlayerActions : Mirror.NetworkBehaviour
 
     private void EndTurn()
     {
+        // If this does not work for both players, try to below code instead.
+        CommandEndTurn();
+
         // Call this when you want to end your turn.
         // Always calling CommandEndTurn does not work, so we only call it if we are not on server.
-        if (isServer)
+        /*if (isServer)
         {
             NetworkManagerKalakeitto.Instance.EndPlayerTurn(gameObject);
         }
         else
         {
             CommandEndTurn();
-        }
+        }*/
     }
 
     private void Start()

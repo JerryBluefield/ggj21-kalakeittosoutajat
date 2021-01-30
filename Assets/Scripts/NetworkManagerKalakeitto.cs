@@ -3,31 +3,21 @@ using UnityEngine;
 
 public class NetworkManagerKalakeitto : Mirror.NetworkManager
 {
-    public static NetworkManagerKalakeitto Instance;
+    [SerializeField] private GameObject monsterPrefab;
+    [SerializeField] private GameObject childPrefab;
+
+    private List<GameObject> connectedPlayers = new List<GameObject>();
     public Transform player1Spawn;
     public Transform player2Spawn;
-    private List<GameObject> players = new List<GameObject>();
+    public static NetworkManagerKalakeitto Instance;
 
-    private void Awake()
+    public void EndPlayerTurn(GameObject endTurnPlayer)
     {
-        if (Instance == null)
+        foreach (GameObject player in connectedPlayers)
         {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-    }
-
-    public void EndPlayerTurn(GameObject endingPlayer)
-    {
-        foreach (GameObject player in players)
-        {
-            if (endingPlayer != player)
+            if (player != endTurnPlayer)
             {
                 player.GetComponentInChildren<PlayerActions>().RpcChangeTurn();
-                break;
             }
         }
     }
@@ -36,9 +26,11 @@ public class NetworkManagerKalakeitto : Mirror.NetworkManager
     {
         Debug.Log("Mirror.OnServerAddPlayer");
         Transform start = numPlayers == 0 ? player1Spawn : player2Spawn;
-        GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
+        GameObject prefab = numPlayers == 0 ? monsterPrefab : childPrefab;
+        GameObject player = Instantiate(prefab, start.position, start.rotation);
+        connectedPlayers.Add(player);
+
         Mirror.NetworkServer.AddPlayerForConnection(conn, player);
-        players.Add(player);
     }
 
     public override void OnServerDisconnect(Mirror.NetworkConnection conn)
@@ -50,6 +42,15 @@ public class NetworkManagerKalakeitto : Mirror.NetworkManager
     public override void Start()
     {
         base.Start();
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
 
         if (KalakeittoStatic.isHost)
         {

@@ -190,6 +190,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7097817862521193479, guid: ea886a4ed0d6699488ed0ed36bd9507f,
         type: 3}
+      propertyPath: childPrefab
+      value: 
+      objectReference: {fileID: 564862460291335588, guid: b0665c018ca0c5c49b742919b9004048,
+        type: 3}
+    - target: {fileID: 7097817862521193479, guid: ea886a4ed0d6699488ed0ed36bd9507f,
+        type: 3}
       propertyPath: player1Spawn
       value: 
       objectReference: {fileID: 1868130444}
@@ -200,9 +206,32 @@ PrefabInstance:
       objectReference: {fileID: 820865912}
     - target: {fileID: 7097817862521193479, guid: ea886a4ed0d6699488ed0ed36bd9507f,
         type: 3}
+      propertyPath: monsterPrefab
+      value: 
+      objectReference: {fileID: 564862460291335588, guid: ef5509b03ebe8ee43ac01c6e6c498a8e,
+        type: 3}
+    - target: {fileID: 7097817862521193479, guid: ea886a4ed0d6699488ed0ed36bd9507f,
+        type: 3}
       propertyPath: virtualCamera
       value: 
       objectReference: {fileID: 1143462281}
+    - target: {fileID: 7097817862521193479, guid: ea886a4ed0d6699488ed0ed36bd9507f,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7097817862521193479, guid: ea886a4ed0d6699488ed0ed36bd9507f,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 564862460291335588, guid: b0665c018ca0c5c49b742919b9004048,
+        type: 3}
+    - target: {fileID: 7097817862521193479, guid: ea886a4ed0d6699488ed0ed36bd9507f,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 564862460291335588, guid: ef5509b03ebe8ee43ac01c6e6c498a8e,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea886a4ed0d6699488ed0ed36bd9507f, type: 3}
 --- !u!1001 &138799656
