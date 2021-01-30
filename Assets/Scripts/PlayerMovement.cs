@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerMovement : Mirror.NetworkBehaviour
 {
@@ -11,13 +12,37 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        UpdateVision();
+        if (isLocalPlayer)
+        {
+            GameObject cameraObj = GameObject.Find("ThirdPersonVirtualCamera");
+            if (cameraObj != null)
+            {
+                CinemachineVirtualCamera camera = cameraObj.GetComponent<CinemachineVirtualCamera>();
+                if (camera != null)
+                {
+                    camera.Follow = transform;
+                }
+                else
+                {
+                    Debug.Log("Failed to find component CinemachineVirtualCamera");
+                }
+            }
+            else
+            {
+                Debug.Log("Failed to find obj ThirdPersonVirtualCamera");
+            }
+            UpdateVision();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         if (Input.GetKey(KeyCode.V))
         {
             UpdateVision();
