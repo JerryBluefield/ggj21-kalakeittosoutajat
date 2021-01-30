@@ -151,9 +151,12 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         RaycastHit hit;
         for (int i = 0; i < rayCount; i++)
         {
-            float rayLength = blockLength * (1 + rayCount);
+            //float rayLength = blockLength * (1 + rayCount);
+            float rayLength = 2;
+
             if (Physics.Raycast(rayCastStart, transform.TransformDirection(Vector3.forward), out hit, rayLength ,wallLayer))
             {
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 break;
             }
             nodeCount++;
