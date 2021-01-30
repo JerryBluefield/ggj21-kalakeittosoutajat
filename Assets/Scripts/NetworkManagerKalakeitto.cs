@@ -2,10 +2,15 @@
 
 public class NetworkManagerKalakeitto : Mirror.NetworkManager
 {
+    public Transform player1Spawn;
+    public Transform player2Spawn;
+
     public override void OnServerAddPlayer(Mirror.NetworkConnection conn)
     {
         Debug.Log("Mirror.OnServerAddPlayer");
-        GameObject player = Instantiate(new GameObject());
+        Transform start = numPlayers == 0 ? player1Spawn : player2Spawn;
+        GameObject player = Instantiate(playerPrefab, start.position, start.rotation);
+
         Mirror.NetworkServer.AddPlayerForConnection(conn, player);
     }
 
