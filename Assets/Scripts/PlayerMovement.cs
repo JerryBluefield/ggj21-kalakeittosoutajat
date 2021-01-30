@@ -6,6 +6,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Node adjacentNode;
+    private float startTime;
+    private float movementLength;
+    public float speed = 1.0F;
+    private bool moving;
+    Vector3 oldPos;
+    Vector3 newPos;
 
     [SerializeField] private float rayDistance = 4f;
     // Start is called before the first frame update
@@ -35,6 +41,22 @@ public class PlayerMovement : MonoBehaviour
         {
             Turn(-1);
         }
+        if (moving)
+        {
+            float distCovered = (Time.time - startTime) * speed;
+
+            float fractionOfJourney = distCovered / movementLength;
+            if (transform.position != newPos)
+            {
+                transform.position = Vector3.Lerp(oldPos, newPos, fractionOfJourney);
+            }
+            else
+            {
+                oldPos = transform.position;
+                moving = false;
+            }
+        }
+
     }
 
     private void Turn(int direction)
@@ -47,9 +69,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if(adjacentNode != null)
         {
-            Vector3 newPos = adjacentNode.transform.position;
+            startTime = Time.time;
+            newPos = adjacentNode.transform.position;
             newPos.y = transform.position.y;
-            transform.position = newPos;
+            movementLength = Vector3.Distance(transform.position, newPos);
+            moving = true;
             adjacentNode = null;
             UpdateVision();
         }
