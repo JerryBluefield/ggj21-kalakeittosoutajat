@@ -2,27 +2,50 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerMovement : Mirror.NetworkBehaviour
 {
     private Node adjacentNode;
-    private float startTime;
-    private float movementLength;
-    public float speed = 1.0F;
-    private bool moving;
-    Vector3 oldPos;
-    Vector3 newPos;
 
     [SerializeField] private float rayDistance = 4f;
+
+    private Coroutine moveCoroutine;
+    private Coroutine turnCoroutine;
     // Start is called before the first frame update
     void Start()
     {
-        UpdateVision();
+        if (isLocalPlayer)
+        {
+            GameObject cameraObj = GameObject.Find("ThirdPersonVirtualCamera");
+            if (cameraObj != null)
+            {
+                CinemachineVirtualCamera camera = cameraObj.GetComponent<CinemachineVirtualCamera>();
+                if (camera != null)
+                {
+                    camera.Follow = transform;
+                }
+                else
+                {
+                    Debug.Log("Failed to find component CinemachineVirtualCamera");
+                }
+            }
+            else
+            {
+                Debug.Log("Failed to find obj ThirdPersonVirtualCamera");
+            }
+            UpdateVision();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         if (Input.GetKey(KeyCode.V))
         {
             UpdateVision();
@@ -41,47 +64,72 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         {
             Turn(-1);
         }
-        if (moving)
-        {
-            float distCovered = (Time.time - startTime) * speed;
-
-            float fractionOfJourney = distCovered / movementLength;
-            if (transform.position != newPos)
-            {
-                transform.position = Vector3.Lerp(oldPos, newPos, fractionOfJourney);
-            }
-            else
-            {
-                oldPos = transform.position;
-                moving = false;
-            }
-        }
-
     }
 
     private void Turn(int direction)
     {
-        transform.eulerAngles += new Vector3(0, direction*90, 0);
+        Vector3 targetEuler = transform.eulerAngles + (direction * new Vector3(0, 90, 0));
+        //transform.eulerAngles += new Vector3(0, direction*90, 0);
+        if(turnCoroutine == null && moveCoroutine == null)
+        {
+            turnCoroutine = StartCoroutine(TurnCoroutine(targetEuler));
+        }
+    }
+
+    private IEnumerator TurnCoroutine(Vector3 targetEuler)
+    {
+
+        float transition = 0f;
+        float speed = 1.5f;
+
+        var startRot = transform.rotation;
+
+        while (transition < 1f)
+        {
+            transition += Time.deltaTime * speed;
+            transform.rotation = Quaternion.Lerp(startRot, Quaternion.Euler(targetEuler), Mathf.SmoothStep(0.0f, 1.0f, transition));
+
+            yield return null;
+        }
+        adjacentNode = null;
         UpdateVision();
+        turnCoroutine = null;
     }
 
     private void MoveForward()
     {
         if(adjacentNode != null)
         {
-            startTime = Time.time;
-            newPos = adjacentNode.transform.position;
+            Vector3 newPos = adjacentNode.transform.position;
             newPos.y = transform.position.y;
-            movementLength = Vector3.Distance(transform.position, newPos);
-            moving = true;
-            adjacentNode = null;
-            UpdateVision();
+            if(turnCoroutine == null && moveCoroutine == null)
+            {
+                moveCoroutine = StartCoroutine(MoveCoroutine(newPos));
+            }
+
         }
         else
         {
             Debug.Log("Can't move!");
         }
 
+    }
+    IEnumerator MoveCoroutine(Vector3 newPos)
+    {
+        float transition = 0f;
+        float speed = 1.5f;
+        //float movementLength = Vector3.Distance(transform.position, newPos);
+        var startPos = transform.position;
+        while (transition < 1f)
+        {
+            transition += Time.deltaTime * speed;
+            transform.position = Vector3.Lerp(startPos, newPos, Mathf.SmoothStep(0.0f, 1.0f, transition));
+
+            yield return null;
+        }
+        adjacentNode = null;
+        UpdateVision();
+        moveCoroutine = null;
     }
 
     private void UpdateVision()

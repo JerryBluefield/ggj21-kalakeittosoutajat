@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.15343459, g: 0.19013157, b: 0.25163686, a: 1}
+  m_IndirectSpecularColor: {r: 0.33371308, g: 0.4997731, b: 0.8330084, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -567,12 +567,12 @@ PrefabInstance:
     - target: {fileID: 4928731707096632935, guid: b3cf7ee4f8c103a4ca3d91e46ba8fd0d,
         type: 3}
       propertyPath: Damping.x
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4928731707096632935, guid: b3cf7ee4f8c103a4ca3d91e46ba8fd0d,
         type: 3}
       propertyPath: Damping.z
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4928731707223483136, guid: b3cf7ee4f8c103a4ca3d91e46ba8fd0d,
         type: 3}
@@ -1321,6 +1321,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 33.941
+      objectReference: {fileID: 0}
+    - target: {fileID: 8688816799271045821, guid: 65d4c2e6633a67b43becd96fc527e73d,
+        type: 3}
+      propertyPath: useVolumetric
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8688816799271045821, guid: 65d4c2e6633a67b43becd96fc527e73d,
+        type: 3}
+      propertyPath: m_ShadowResolution.m_Override
+      value: 2048
       objectReference: {fileID: 0}
     - target: {fileID: 8688816799271045822, guid: 65d4c2e6633a67b43becd96fc527e73d,
         type: 3}
