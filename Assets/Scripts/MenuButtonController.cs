@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuButtonController : MonoBehaviour
 {
@@ -10,9 +11,12 @@ public class MenuButtonController : MonoBehaviour
     [SerializeField] int maxIndex;
     public AudioSource audioSource;
 
+    private Transform connect;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        connect = transform.Find("Connect");
     }
 
     void Update()
@@ -63,6 +67,7 @@ public class MenuButtonController : MonoBehaviour
         else if (index == 1)
         {
             // join game
+            connect.gameObject.SetActive(true);
         }
         else if (index == 2)
         {
@@ -72,5 +77,13 @@ public class MenuButtonController : MonoBehaviour
         {
             Debug.Log("invalid menu index");
         }
+    }
+
+    public void joinGame()
+    {
+        KalakeittoStatic.joinIp = connect.GetComponentInChildren<TMP_InputField>().text;
+        KalakeittoStatic.isHost = false;
+        Debug.Log("Joining game: " + KalakeittoStatic.joinIp);
+        SceneManager.LoadScene("Main");
     }
 }
