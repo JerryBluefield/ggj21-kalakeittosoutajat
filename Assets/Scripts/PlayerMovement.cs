@@ -36,6 +36,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
                 Debug.Log("Failed to find obj ThirdPersonVirtualCamera");
             }
             UpdateVision();
+            animator.SetFloat("Moving", 0f);
         }
     }
 
@@ -48,7 +49,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         }
 
         // Moving parameter: 0 is idle / 1 is moving.
-        animator.SetFloat("Moving", Mathf.InverseLerp(-1, 1, Mathf.Sin(Time.time)));
+        //animator.SetFloat("Moving", Mathf.InverseLerp(-1, 1, Mathf.Sin(Time.time)));
 
         if (Input.GetKey(KeyCode.V))
         {
@@ -84,7 +85,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     {
 
         float transition = 0f;
-        float speed = 1.5f;
+        float speed = 1.2f;
 
         var startRot = transform.rotation;
 
@@ -121,7 +122,8 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     IEnumerator MoveCoroutine(Vector3 newPos)
     {
         float transition = 0f;
-        float speed = 1.5f;
+        float speed = 0.5f;
+        animator.SetFloat("Moving", Mathf.MoveTowards(1f, -1f, Time.deltaTime * speed));
         //float movementLength = Vector3.Distance(transform.position, newPos);
         var startPos = transform.position;
         while (transition < 1f)
@@ -134,6 +136,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         adjacentNode = null;
         UpdateVision();
         moveCoroutine = null;
+        animator.SetFloat("Moving", Mathf.MoveTowards(-1f, 1f, Time.deltaTime * speed));
     }
 
     private void UpdateVision()
