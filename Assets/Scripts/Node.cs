@@ -16,7 +16,7 @@ public class Node : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            GetAdjacentNodes();
+           // GetAdjacentNodes();
         }
     }
 
