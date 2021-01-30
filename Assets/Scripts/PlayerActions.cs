@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class PlayerActions : Mirror.NetworkBehaviour
 {
@@ -15,11 +16,46 @@ public class PlayerActions : Mirror.NetworkBehaviour
     [SerializeField] private int shootHarpoon = 2;
 
     [SerializeField] private int currentActions = 0;
+    
+    [Command]
+    public void CommandEndTurn()
+    {
+        // This is executed on server. Below method calls RpcChangeTurn on client for the other player.
+        NetworkManagerKalakeitto.Instance.EndPlayerTurn(gameObject);
+    }
 
-    // Start is called before the first frame update
-    void Start()
+    [ClientRpc]
+    public void RpcChangeTurn()
+    {
+        // This means that the other player ahs ended their turn.
+        ReplenishActions();
+    }
+
+    private void EndTurn()
+    {
+        // Call this when you want to end your turn.
+        // Always calling CommandEndTurn does not work, so we only call it if we are not on server.
+        if (isServer)
+        {
+            NetworkManagerKalakeitto.Instance.EndPlayerTurn(gameObject);
+        }
+        else
+        {
+            CommandEndTurn();
+        }
+    }
+
+    private void Start()
     {
         ReplenishActions();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            EndTurn();
+        }
     }
 
     public void ReplenishActions()
@@ -45,11 +81,5 @@ public class PlayerActions : Mirror.NetworkBehaviour
             return true;
         }
         return false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
