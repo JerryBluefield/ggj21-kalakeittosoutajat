@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 8372538925683124257}
   - component: {fileID: 573113740150376191}
   - component: {fileID: 2255966625245589665}
+  - component: {fileID: 5201578031889206586}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -272,6 +273,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mistEffect: {fileID: 619501095}
+--- !u!114 &5201578031889206586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564862460291335588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba798b8f48f9aaa469b7fa5ed1d1958a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxActions: 6
+  harpoon: 0
+  moveForward: 1
+  turn: 0
+  shootHarpoon: 2
+  currentActions: 0
 --- !u!1 &564862461250657931
 GameObject:
   m_ObjectHideFlags: 0
