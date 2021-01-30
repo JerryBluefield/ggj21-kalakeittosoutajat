@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 5, y: 5, z: 20.64}
+  Damping: {x: 10, y: 5, z: 10}
   ShoulderOffset: {x: 0.5, y: 0, z: 0}
   VerticalArmLength: 0.25
   CameraSide: 1
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_PivotOffset: {x: 0, y: 0, z: 0}
   m_AmplitudeGain: 1
   m_FrequencyGain: 1
-  mNoiseOffsets: {x: 0, y: 0, z: 0}
+  mNoiseOffsets: {x: 627.26587, y: 402.5068, z: -253.65796}
 --- !u!1 &4928731707223483138
 GameObject:
   m_ObjectHideFlags: 0
