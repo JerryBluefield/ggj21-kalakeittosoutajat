@@ -34,8 +34,6 @@ public class Node : MonoBehaviour
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
             }
-
-            Debug.Log("Did Hit");
         }
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hit, 2))
         {

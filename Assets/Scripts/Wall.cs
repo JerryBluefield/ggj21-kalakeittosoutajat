@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
+    private Collider col;
+    private Coroutine moveCoroutine;
     // Start is called before the first frame update
     void Start()
     {
-        
+        col = GetComponent<Collider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.U))
+        if(Input.GetKeyDown(KeyCode.U))
         {
             Up();
         }
-        if(Input.GetKey(KeyCode.D))
+        if(Input.GetKeyDown(KeyCode.D))
         {
             Down();
         }
@@ -25,12 +27,22 @@ public class Wall : MonoBehaviour
 
     private void Up()
     {
-        StartCoroutine(UpCoroutine());
+        if(moveCoroutine != null)
+        {
+            StopCoroutine(moveCoroutine);
+            moveCoroutine = null;
+        }
+        moveCoroutine = StartCoroutine(UpCoroutine());
     }
 
     private void Down()
     {
-        StartCoroutine(DownCoroutine());
+        if (moveCoroutine != null)
+        {
+            StopCoroutine(moveCoroutine);
+            moveCoroutine = null;
+        }
+        moveCoroutine = StartCoroutine(DownCoroutine());
     }
 
     private IEnumerator UpCoroutine()
@@ -40,6 +52,7 @@ public class Wall : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 0, transform.position.z), Time.deltaTime * 2);
             yield return null;
         }
+        col.enabled = true;
     }
 
     private IEnumerator DownCoroutine()
@@ -49,5 +62,6 @@ public class Wall : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -2, transform.position.z),Time.deltaTime*2);
             yield return null;
         }
+        col.enabled = false;
     }
 }
