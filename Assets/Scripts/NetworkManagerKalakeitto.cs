@@ -19,4 +19,21 @@ public class NetworkManagerKalakeitto : Mirror.NetworkManager
         Debug.Log("Mirror.OnServerDisconnect");
         base.OnServerDisconnect(conn);
     }
+
+    public override void Start()
+    {
+        base.Start();
+
+        if (KalakeittoStatic.isHost)
+        {
+            Debug.Log("Start host");
+            StartHost();
+        }
+        else
+        {
+            Debug.Log("Start client");
+            networkAddress = KalakeittoStatic.joinIp;
+            StartClient();
+        }
+    }
 }
