@@ -70,7 +70,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     {
         Vector3 targetEuler = transform.eulerAngles + (direction * new Vector3(0, 90, 0));
         //transform.eulerAngles += new Vector3(0, direction*90, 0);
-        if(turnCoroutine == null)
+        if(turnCoroutine == null && moveCoroutine == null)
         {
             turnCoroutine = StartCoroutine(TurnCoroutine(targetEuler));
         }
@@ -102,7 +102,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         {
             Vector3 newPos = adjacentNode.transform.position;
             newPos.y = transform.position.y;
-            if(moveCoroutine == null)
+            if(turnCoroutine == null && moveCoroutine == null)
             {
                 moveCoroutine = StartCoroutine(MoveCoroutine(newPos));
             }
