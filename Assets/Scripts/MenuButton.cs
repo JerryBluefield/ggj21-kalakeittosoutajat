@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class MenuButton : MonoBehaviour
+public class MenuButton : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] MenuButtonController menuButtonController;
     [SerializeField] Animator animator;
@@ -22,11 +23,17 @@ public class MenuButton : MonoBehaviour
             {
                 animator.SetBool("isPressed", false);
                 animatorFunctions.disableOnce = true;
+                menuButtonController.select(thisIndex);
             }
         }
         else
         {
             animator.SetBool("isSelected", false);
         }
+    }
+
+    void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
+    {
+        menuButtonController.select(thisIndex);
     }
 }
