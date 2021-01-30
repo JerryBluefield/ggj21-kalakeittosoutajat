@@ -22,20 +22,24 @@ public class PlayerMovement : MonoBehaviour
             UpdateVision();
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             MoveForward();
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            Turn();
+            Turn(1);
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Turn(-1);
         }
     }
 
-    private void Turn()
+    private void Turn(int direction)
     {
-        transform.eulerAngles += new Vector3(0, 90, 0);
+        transform.eulerAngles += new Vector3(0, direction*90, 0);
         UpdateVision();
     }
 
