@@ -9,6 +9,9 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     private Node adjacentNode;
 
     [SerializeField] private float rayDistance = 4f;
+
+    private Coroutine moveCoroutine;
+    private Coroutine turnCoroutine;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,23 +70,30 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     {
         Vector3 targetEuler = transform.eulerAngles + (direction * new Vector3(0, 90, 0));
         //transform.eulerAngles += new Vector3(0, direction*90, 0);
-        StartCoroutine(TurnCoroutine(targetEuler));
+        if(turnCoroutine == null)
+        {
+            turnCoroutine = StartCoroutine(TurnCoroutine(targetEuler));
+        }
     }
 
     private IEnumerator TurnCoroutine(Vector3 targetEuler)
     {
 
         float transition = 0f;
-        float speed = 1;
+        float speed = 1.5f;
+
+        var startRot = transform.rotation;
+
         while (transition < 1f)
         {
             transition += Time.deltaTime * speed;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetEuler), transition);
+            transform.rotation = Quaternion.Lerp(startRot, Quaternion.Euler(targetEuler), Mathf.SmoothStep(0.0f, 1.0f, transition));
 
             yield return null;
         }
         adjacentNode = null;
         UpdateVision();
+        turnCoroutine = null;
     }
 
     private void MoveForward()
@@ -92,7 +102,11 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         {
             Vector3 newPos = adjacentNode.transform.position;
             newPos.y = transform.position.y;
-            StartCoroutine(MoveCoroutine(newPos));
+            if(moveCoroutine == null)
+            {
+                moveCoroutine = StartCoroutine(MoveCoroutine(newPos));
+            }
+
         }
         else
         {
@@ -103,17 +117,19 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     IEnumerator MoveCoroutine(Vector3 newPos)
     {
         float transition = 0f;
-        float speed = 0.5f;
+        float speed = 1.5f;
         //float movementLength = Vector3.Distance(transform.position, newPos);
+        var startPos = transform.position;
         while (transition < 1f)
         {
             transition += Time.deltaTime * speed;
-            transform.position = Vector3.Lerp(transform.position, newPos, transition);
+            transform.position = Vector3.Lerp(startPos, newPos, Mathf.SmoothStep(0.0f, 1.0f, transition));
 
             yield return null;
         }
         adjacentNode = null;
         UpdateVision();
+        moveCoroutine = null;
     }
 
     private void UpdateVision()
