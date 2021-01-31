@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &619501093
 Transform:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619501092}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  mistEffect: {fileID: 0}
+  mistEffect: {fileID: 619501095}
 --- !u!114 &5201578031889206586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,8 +307,8 @@ MonoBehaviour:
   harpoon: 0
   moveForward: 1
   turn: 0
-  shootHarpoon: 30
-  currentActions: 6
+  shootHarpoon: 1
+  currentActions: 1
 --- !u!95 &5827633076599855023
 Animator:
   serializedVersion: 3
