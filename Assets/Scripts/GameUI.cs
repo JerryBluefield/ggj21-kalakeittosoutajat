@@ -85,7 +85,7 @@ public class GameUI : MonoBehaviour
         {
             turnText.text = ChildTurnStartString;
         }
-        turnTextAnimator.SetTrigger("Show");
+        //turnTextAnimator.SetTrigger("Show");
     }
 
     public void StartTurn()
