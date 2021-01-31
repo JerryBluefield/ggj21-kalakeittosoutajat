@@ -11,6 +11,7 @@ public class GameUI : NetworkBehaviour
     [SerializeField] private Animator turnTextAnimator;
     [SerializeField] private RectTransform fishContainer;
     [SerializeField] private HUDFish pickupPrototype;
+    [SerializeField] private HUDFish childPickupPrototype;
     private List<HUDFish> fishes = new List<HUDFish>();
     private const string ChildTurnStartString = "The child is moving...";
     private const string MonsterTurnStartString = "The old man is moving...";
@@ -26,10 +27,13 @@ public class GameUI : NetworkBehaviour
         {
             Destroy(this);
         }
+        fishContainer.gameObject.SetActive(false);
     }
 
     public void InitializePickupCount(int pickupCount)
     {
+        fishContainer.gameObject.SetActive(true);
+        pickupPrototype.Initialize(isServer);
         foreach (HUDFish fish in fishes)
         {
             if (fish != pickupPrototype)
