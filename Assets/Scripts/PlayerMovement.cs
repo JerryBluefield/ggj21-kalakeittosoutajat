@@ -20,11 +20,21 @@ public class PlayerMovement : Mirror.NetworkBehaviour
 
     private Coroutine moveCoroutine;
     private Coroutine turnCoroutine;
+
+    public SoundPlayer soundPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
         if (isLocalPlayer)
         {
+            soundPlayer = transform.GetComponent<SoundPlayer>();
+
+            if (soundPlayer == null)
+            {
+                Debug.Log("Failed to find soundPlayer in " + transform.name);
+            }
+
             GameObject cameraObj = GameObject.Find("ThirdPersonVirtualCamera");
             if (cameraObj != null)
             {
@@ -51,15 +61,15 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
         if (moveCoroutine == null)
         {
             float animationValue = Mathf.MoveTowards(animator.GetFloat("Moving"), 0f, Time.deltaTime * animatorEndSpeed);
             animator.SetFloat("Moving", animationValue);
-        }
-
-        if (!isLocalPlayer)
-        {
-            return;
         }
 
         // Moving parameter: 0 is idle / 1 is moving.
@@ -149,7 +159,10 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         else
         {
             Debug.Log("Can't move! Something blocks the way I guess.");
-            SoundPlayer.Instance.PlayBumpSound();
+            if (soundPlayer != null)
+            {
+                soundPlayer.PlayBumpSound();
+            }
         }
 
     }
@@ -350,6 +363,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     private void Die()
     {
         Debug.Log("Child died.");
+        animator.SetTrigger("Die");
         //TODO: Play death animation -> wait for few seconds -> Transition to GameOver SCreen.
     }
 }

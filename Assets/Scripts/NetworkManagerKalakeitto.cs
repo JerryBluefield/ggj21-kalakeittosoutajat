@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Mirror;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class NetworkManagerKalakeitto : Mirror.NetworkManager
+public class NetworkManagerKalakeitto : NetworkManager
 {
     [SerializeField] private GameObject monsterPrefab;
     [SerializeField] private GameObject childPrefab;
@@ -22,7 +24,7 @@ public class NetworkManagerKalakeitto : Mirror.NetworkManager
         }
     }
 
-    public override void OnServerAddPlayer(Mirror.NetworkConnection conn)
+    public override void OnServerAddPlayer(NetworkConnection conn)
     {
         Debug.Log("Mirror.OnServerAddPlayer");
         Transform start = numPlayers == 0 ? player1Spawn : player2Spawn;
@@ -30,13 +32,33 @@ public class NetworkManagerKalakeitto : Mirror.NetworkManager
         GameObject player = Instantiate(prefab, start.position, start.rotation);
         connectedPlayers.Add(player);
 
-        Mirror.NetworkServer.AddPlayerForConnection(conn, player);
+        NetworkServer.AddPlayerForConnection(conn, player);
     }
 
-    public override void OnServerDisconnect(Mirror.NetworkConnection conn)
+    public override void OnServerDisconnect(NetworkConnection conn)
     {
         Debug.Log("Mirror.OnServerDisconnect");
         base.OnServerDisconnect(conn);
+    }
+
+    public override void OnClientError(NetworkConnection conn, int errorCode)
+    {
+        Debug.Log("Client error " + errorCode);
+        base.OnClientError(conn, errorCode);
+    }
+
+    public override void OnClientDisconnect(NetworkConnection conn)
+    {
+        base.OnClientDisconnect(conn);
+        Debug.Log("Client disconnect, returning to start menu");
+        SceneManager.LoadScene("StartMenu");
+    }
+
+    public override void OnStopHost()
+    {
+        base.OnStopHost();
+        Debug.Log("Hosting stopped, returning to start menu");
+        SceneManager.LoadScene("StartMenu");
     }
 
     public override void Start()
