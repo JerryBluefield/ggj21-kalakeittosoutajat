@@ -455,7 +455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  walkSound: {fileID: 8300000, guid: 8b7a5eb6c17c9bf448504e234a35fe0d, type: 3}
+  walkSound: {fileID: 8300000, guid: c6cb99f9456d6f14d80c2a84c4a5c69d, type: 3}
   bumpSound: {fileID: 8300000, guid: a520a3ee0955a2748b77f8c8eeedbc3d, type: 3}
   harpoonShotSound: {fileID: 8300000, guid: 877a790f2ede8474e820ac25fe333ae1, type: 3}
 --- !u!54 &2278029883409157659

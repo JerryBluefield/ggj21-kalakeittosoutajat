@@ -37,4 +37,9 @@ public class SoundPlayer : Mirror.NetworkBehaviour
         }
         GetComponent<AudioSource>().PlayOneShot(audioClip);
     }
+
+    internal void PlayStepSound()
+    {
+        PlaySound(walkSound);
+    }
 }

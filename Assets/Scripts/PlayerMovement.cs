@@ -150,6 +150,8 @@ public class PlayerMovement : Mirror.NetworkBehaviour
                 {
                     moveCoroutine = StartCoroutine(MoveCoroutine(newPos));
                 }
+
+                soundPlayer.PlayStepSound();
             }
             else
             {
