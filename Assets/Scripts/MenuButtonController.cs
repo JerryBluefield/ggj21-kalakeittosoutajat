@@ -76,6 +76,7 @@ public class MenuButtonController : MonoBehaviour
         else if (index == 3)
         {
             // exit
+            Application.Quit();
         }
         else
         {
