@@ -5,24 +5,6 @@ using UnityEngine;
 
 public class SoundPlayer : Mirror.NetworkBehaviour
 {
-    public static SoundPlayer Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
-
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-        } else
-        {
-            Instance = this;
-        }
-    }
-
     [SerializeField]
     AudioClip walkSound;
 
@@ -33,6 +15,11 @@ public class SoundPlayer : Mirror.NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
+            return;
+        }
+        if (bumpSound == null)
+        {
+            Debug.Log("bumpSound audioclip is null");
             return;
         }
         GetComponent<AudioSource>().PlayOneShot(bumpSound);
