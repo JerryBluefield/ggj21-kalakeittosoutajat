@@ -386,6 +386,7 @@ MonoBehaviour:
   turnTextAnimator: {fileID: 4610140030159461425}
   fishContainer: {fileID: 7577793346348078421}
   pickupPrototype: {fileID: 3518987663213536881}
+  childPickupPrototype: {fileID: 0}
 --- !u!1 &4913950441539575491
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,8 +499,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d68fb0ce5e61614eaf0eb1e31eb2810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grey: {fileID: 211841098432107995}
-  colored: {fileID: 7633489128626161338}
+  grey: {fileID: 2331746919479354975}
+  colored: {fileID: 4229284771803274773}
+  greyChild: {fileID: 21300000, guid: e37b36c9146ded04dad8e0071a4672ee, type: 3}
+  coloredChild: {fileID: 21300000, guid: ed3ac356e36eeac47a89962fe4403824, type: 3}
 --- !u!1 &7633489128626161338
 GameObject:
   m_ObjectHideFlags: 0
