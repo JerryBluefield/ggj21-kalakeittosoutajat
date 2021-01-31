@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &619501093
 Transform:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619501092}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -129,6 +129,8 @@ GameObject:
   - component: {fileID: 5201578031889206586}
   - component: {fileID: 5827633076599855023}
   - component: {fileID: 8945284861813631664}
+  - component: {fileID: -561849486078861125}
+  - component: {fileID: 3407262357025795077}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Player
@@ -419,6 +421,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-561849486078861125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564862460291335588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  animator: {fileID: 5827633076599855023}
+--- !u!114 &3407262357025795077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564862460291335588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9852fc3a84401d040bbb7788a80a9c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  walkSound: {fileID: 8300000, guid: 8b7a5eb6c17c9bf448504e234a35fe0d, type: 3}
+  bumpSound: {fileID: 8300000, guid: a520a3ee0955a2748b77f8c8eeedbc3d, type: 3}
 --- !u!1 &564862461250657931
 GameObject:
   m_ObjectHideFlags: 0
