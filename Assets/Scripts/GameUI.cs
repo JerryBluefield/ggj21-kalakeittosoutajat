@@ -8,14 +8,18 @@ public class GameUI : NetworkBehaviour
     public static GameUI Instance;
 
     [SerializeField] private TextMeshProUGUI turnText;
+    [SerializeField] private TextMeshProUGUI winnerText;
     [SerializeField] private Animator turnTextAnimator;
     [SerializeField] private RectTransform fishContainer;
+    [SerializeField] private RectTransform gameOver;
     [SerializeField] private HUDFish pickupPrototype;
     [SerializeField] private HUDFish childPickupPrototype;
     private List<HUDFish> fishes = new List<HUDFish>();
     private const string ChildTurnStartString = "The child is moving...";
     private const string MonsterTurnStartString = "The old man is moving...";
     private const string OwnTurnStartString = "My turn...";
+    private const string ChildWinString = "The child has escaped";
+    private const string MonsterWinString = "The old man has won";
 
     private void Awake()
     {
@@ -28,6 +32,7 @@ public class GameUI : NetworkBehaviour
             Destroy(this);
         }
         fishContainer.gameObject.SetActive(false);
+        gameOver.gameObject.SetActive(false);
     }
 
     public void InitializePickupCount(int pickupCount)
@@ -82,5 +87,22 @@ public class GameUI : NetworkBehaviour
     {
         turnText.text = OwnTurnStartString;
         turnTextAnimator.SetTrigger("Show");
+    }
+
+    public void EndGame(int winner)
+    {
+        gameOver.gameObject.SetActive(true);
+        if (winner == 1)
+        {
+            winnerText.text = ChildWinString;
+        }
+        else if (winner == 2)
+        {
+            winnerText.text = MonsterWinString;
+        }
+        else
+        {
+            Debug.LogError("No winner??!?");
+        }
     }
 }

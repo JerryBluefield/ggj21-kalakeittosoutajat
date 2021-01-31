@@ -300,11 +300,15 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     {
         Debug.Log("Child escaped!");
         //TODO: Wait for few seconds -> Transition to GameOver screen.
+
+        GameUI.Instance.EndGame(1);
     }
 
     private void Die()
     {
         Debug.Log("Child died.");
         //TODO: Play death animation -> wait for few seconds -> Transition to GameOver SCreen.
+
+        GameUI.Instance.EndGame(2);
     }
 }
