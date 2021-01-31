@@ -237,6 +237,8 @@ MonoBehaviour:
   animatorStartSpeed: 2
   animatorEndSpeed: 2
   actions: {fileID: 0}
+  harpoonProjectile: {fileID: 8578184186162057473, guid: 5020bf9750dbdc742869b3e4e207e382,
+    type: 3}
 --- !u!114 &8372538925683124257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  maxActions: 4
+  maxActions: 6
   harpoon: 1
   moveForward: 1
   turn: 1

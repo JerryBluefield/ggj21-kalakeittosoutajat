@@ -16,6 +16,8 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     [SerializeField] private float animatorEndSpeed = 0.25f;
     [SerializeField] private PlayerActions actions;
 
+    [SerializeField] private HarpoonProjectile harpoonProjectile;
+
     private Coroutine moveCoroutine;
     private Coroutine turnCoroutine;
     // Start is called before the first frame update
@@ -71,6 +73,11 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             MoveForward();
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            ShootHarpoon();
         }
 
         if (Input.GetKeyDown(KeyCode.D))
@@ -265,6 +272,50 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         //}
     }
 
+    private void ShootHarpoon()
+    {
+        float harpoonRange = 4;
+        if (actions.HasHarpoon && actions.ShootHarpoonAction())
+        {
+            Vector3 harpoonStartPos = transform.position + Vector3.up;
+            Vector3 haproonEndPos = harpoonStartPos + transform.forward * harpoonRange;
+
+            var newProjectile = Instantiate(harpoonProjectile, harpoonStartPos, Quaternion.identity);
+            newProjectile.Initialize(harpoonStartPos, haproonEndPos);
+            newProjectile.transform.LookAt(haproonEndPos);
+        }
+
+       // Vector3 rayCastStart = transform.position;
+       // RaycastHit hit;
+       // LayerMask wallLayer = LayerMask.GetMask("Wall");
+       // LayerMask playerLayer = LayerMask.GetMask("Default");
+       // float wallHitDistance = 9999;
+       // float playerHitDistance = 9999;
+       //// float harpoonRange = 4;
+       // if (Physics.Raycast(rayCastStart, transform.TransformDirection(Vector3.forward), out hit, harpoonRange ,wallLayer))
+       // {
+       //     Debug.Log("Harpoon hit wall.");
+       //     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+       //     wallHitDistance = hit.distance;
+       // }
+       // else
+       // {
+       //     Debug.Log("Harpoon did not hit wall.");
+       // }
+
+       // if (Physics.Raycast(rayCastStart, transform.TransformDirection(Vector3.forward), out hit, harpoonRange, playerLayer))
+       // {
+       //     playerHitDistance = hit.distance;
+       //     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+
+       //     if(playerHitDistance < wallHitDistance)
+       //     {
+       //         Debug.Log("Harpoon hit player.");
+       //     }
+
+       // }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -279,6 +330,13 @@ public class PlayerMovement : Mirror.NetworkBehaviour
             if (!actions.HasHarpoon)
             {
                 Exit();
+            }
+        }
+        if (other.CompareTag("Harpoon"))
+        {
+            if (!actions.HasHarpoon)
+            {
+                Die();
             }
         }
     }
