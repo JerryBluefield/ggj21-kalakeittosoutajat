@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class PlayerMovement : Mirror.NetworkBehaviour
 {
@@ -275,5 +276,35 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         //        Debug.Log("Wall: " + hit.transform.name);
         //    }
         //}
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (!actions.HasHarpoon)
+            {
+                Die();
+            }
+        }
+        if (other.CompareTag("Exit"))
+        {
+            if (!actions.HasHarpoon)
+            {
+                Exit();
+            }
+        }
+    }
+
+    private void Exit()
+    {
+        Debug.Log("Child escaped!");
+        //TODO: Wait for few seconds -> Transition to GameOver screen.
+    }
+
+    private void Die()
+    {
+        Debug.Log("Child died.");
+        //TODO: Play death animation -> wait for few seconds -> Transition to GameOver SCreen.
     }
 }
