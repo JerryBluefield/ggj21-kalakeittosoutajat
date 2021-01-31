@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 8945284861813631664}
   - component: {fileID: 2219250386179009013}
   - component: {fileID: 6560849921014271480}
+  - component: {fileID: 2709533617676717588}
   m_Layer: 0
   m_Name: Child
   m_TagString: Player
@@ -284,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  mistEffect: {fileID: 619501095}
+  mistEffect: {fileID: 0}
 --- !u!114 &5201578031889206586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,6 +454,22 @@ MonoBehaviour:
   syncInterval: 0.1
   walkSound: {fileID: 8300000, guid: a520a3ee0955a2748b77f8c8eeedbc3d, type: 3}
   bumpSound: {fileID: 8300000, guid: 8b7a5eb6c17c9bf448504e234a35fe0d, type: 3}
+--- !u!54 &2709533617676717588
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564862460291335588}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &564862461250657931
 GameObject:
   m_ObjectHideFlags: 0
