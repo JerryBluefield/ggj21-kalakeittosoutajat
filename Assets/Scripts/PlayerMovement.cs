@@ -85,7 +85,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
             MoveForward();
         }
 
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             ShootHarpoon();
         }
