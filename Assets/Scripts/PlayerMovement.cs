@@ -298,8 +298,6 @@ public class PlayerMovement : Mirror.NetworkBehaviour
 
             newProjectile.Initialize(harpoonStartPos, haproonEndPos);
             newProjectile.transform.LookAt(haproonEndPos);
-
-            soundPlayer.PlayHarpoonShotSound();
     }
 
 
@@ -309,6 +307,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         if (actions.HasHarpoon && actions.ShootHarpoonAction())
         {
             CommandShootHarpoon();
+            soundPlayer.PlayHarpoonShotSound();
             //Vector3 harpoonStartPos = transform.position + Vector3.up;
             //Vector3 haproonEndPos = harpoonStartPos + transform.forward * harpoonRange;
 
