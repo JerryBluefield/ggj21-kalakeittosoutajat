@@ -71,6 +71,10 @@ public class MenuButtonController : MonoBehaviour
         }
         else if (index == 2)
         {
+            GetComponent<EnvironmentVolumeEnabler>().EnableEnvironmentVolume();
+        }
+        else if (index == 3)
+        {
             // exit
         }
         else
