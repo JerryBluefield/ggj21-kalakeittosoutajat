@@ -690,6 +690,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4610140030159461391, guid: 8669949626e674948aff4087b043caa6,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b82690d539e84c4db5f16ba7174d486,
+        type: 2}
+    - target: {fileID: 4610140030159461391, guid: 8669949626e674948aff4087b043caa6,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -7400782759849800602, guid: 1b82690d539e84c4db5f16ba7174d486,
+        type: 2}
     - target: {fileID: 4610140031115293442, guid: 8669949626e674948aff4087b043caa6,
         type: 3}
       propertyPath: m_Name
