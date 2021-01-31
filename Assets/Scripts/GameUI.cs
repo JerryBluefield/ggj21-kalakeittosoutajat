@@ -17,8 +17,8 @@ public class GameUI : MonoBehaviour
     private List<HUDFish> fishes = new List<HUDFish>();
     private bool isServer;
     private bool initialized;
-    private const string ChildTurnStartString = "The child is moving...";
-    private const string MonsterTurnStartString = "The old man is moving...";
+    private const string ChildTurnStartString = "Not your turn..";
+    private const string MonsterTurnStartString = "Not your turn...";
     private const string OwnTurnStartString = "My turn...";
     private const string ChildWinString = "The child has escaped";
     private const string MonsterWinString = "The old man has won";
