@@ -79,11 +79,11 @@ public class GameUI : MonoBehaviour
     {
         if (isServer)
         {
-            turnText.text = MonsterTurnStartString;
+            //turnText.text = MonsterTurnStartString;
         }
         else
         {
-            turnText.text = ChildTurnStartString;
+            //turnText.text = ChildTurnStartString;
         }
         //turnTextAnimator.SetTrigger("Show");
     }
