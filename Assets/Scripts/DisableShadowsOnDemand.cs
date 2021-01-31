@@ -15,6 +15,7 @@ public class DisableShadowsOnDemand : MonoBehaviour
 
     private void Start()
     {
+        light = GetComponent<HDAdditionalLightData>();
         if (Application.isPlaying)
         {
             mainCamera = Camera.main.transform;

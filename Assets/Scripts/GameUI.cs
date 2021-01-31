@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 using Mirror;
 
-public class GameUI : NetworkBehaviour
+public class GameUI : MonoBehaviour
 {
     public static GameUI Instance;
 
@@ -15,6 +15,8 @@ public class GameUI : NetworkBehaviour
     [SerializeField] private HUDFish pickupPrototype;
     [SerializeField] private HUDFish childPickupPrototype;
     private List<HUDFish> fishes = new List<HUDFish>();
+    private bool isServer;
+    private bool initialized;
     private const string ChildTurnStartString = "The child is moving...";
     private const string MonsterTurnStartString = "The old man is moving...";
     private const string OwnTurnStartString = "My turn...";
@@ -27,7 +29,7 @@ public class GameUI : NetworkBehaviour
         {
             Instance = this;
         }
-        else
+        else if (Instance != this)
         {
             Destroy(this);
         }
@@ -35,10 +37,13 @@ public class GameUI : NetworkBehaviour
         gameOver.gameObject.SetActive(false);
     }
 
+
     public void InitializePickupCount(int pickupCount)
     {
+        Debug.Log("init");
         fishContainer.gameObject.SetActive(true);
-        pickupPrototype.Initialize(isServer);
+        isServer = true;
+        pickupPrototype.Initialize(!isServer);
         foreach (HUDFish fish in fishes)
         {
             if (fish != pickupPrototype)
