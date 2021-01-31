@@ -32,9 +32,4 @@ public class PickUp : MonoBehaviour
             PickUpController.Instance.PickedUp();
         }
     }
-
-    internal List<PickUp> ToList()
-    {
-        throw new NotImplementedException();
-    }
 }
