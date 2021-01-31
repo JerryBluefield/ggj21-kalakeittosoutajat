@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
+    public GameObject PickUpsParent => pickUpsParent;
+
     [SerializeField] private List<Mesh> wallModels;
     [SerializeField] private List<Mesh> floorModels;
     [SerializeField] private List<Mesh> columnModels;
+
+    [SerializeField] private GameObject pickUpsParent;
     // Start is called before the first frame update
     void Start()
     {

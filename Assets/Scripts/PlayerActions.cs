@@ -6,6 +6,7 @@ using Mirror;
 public class PlayerActions : Mirror.NetworkBehaviour
 {
     public int CurrentActions => currentActions;
+    public bool HasHarpoon => harpoon;
 
     [Header("Settings")]
     [SerializeField] private int maxActions = 6;

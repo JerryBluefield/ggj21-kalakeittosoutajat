@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PlayerController : Mirror.NetworkBehaviour
 {
+    public PlayerMovement CurrentPlayer => currentPlayer;
+
     public static PlayerController Instance;
+
 
     [SerializeField] private PlayerMovement currentPlayer;
     [Header("Component Reference")]
