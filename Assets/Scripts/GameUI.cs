@@ -28,11 +28,6 @@ public class GameUI : NetworkBehaviour
         }
     }
 
-    private void Start()
-    {
-        InitializePickupCount(5);
-    }
-
     public void InitializePickupCount(int pickupCount)
     {
         foreach (HUDFish fish in fishes)
