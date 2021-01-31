@@ -27,11 +27,13 @@ public class PickUpController : Mirror.NetworkBehaviour
     private void Start()
     {
         pickUps = currentLevel.PickUpsParent.GetComponentsInChildren<PickUp>().ToList();
+        GameUI.Instance.InitializePickupCount(pickUps.Count);
         Debug.Log("Pickup count: " + pickUps.Count);
     }
 
     public void PickedUp()
     {
+        GameUI.Instance.PickupPickup();
         int remainingPickUps = 0;
         for (int i = 0; i < pickUps.Count; i++)
         {
