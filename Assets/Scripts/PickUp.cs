@@ -6,6 +6,7 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     public bool IsCollected => isCollected;
+    public float rotateSpeed = 15;
 
     private bool isCollected = false;
     // Start is called before the first frame update
@@ -17,7 +18,10 @@ public class PickUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!isCollected)
+        {
+            transform.Rotate(0, rotateSpeed * Time.deltaTime, 0);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
