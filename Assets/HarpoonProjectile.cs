@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HarpoonProjectile : MonoBehaviour
+public class HarpoonProjectile : Mirror.NetworkBehaviour
 {
     private Vector3 startPos;
     private Vector3 endPos;

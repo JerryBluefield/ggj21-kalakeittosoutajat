@@ -52,10 +52,10 @@ public class PlayerMovement : Mirror.NetworkBehaviour
             {
                 Debug.Log("Failed to find obj ThirdPersonVirtualCamera");
             }
-            actions = GetComponent<PlayerActions>();
             UpdateVision();
             animator.SetFloat("Moving", 0f);
         }
+        actions = GetComponent<PlayerActions>();
     }
 
     // Update is called once per frame
@@ -294,8 +294,12 @@ public class PlayerMovement : Mirror.NetworkBehaviour
             Vector3 haproonEndPos = harpoonStartPos + transform.forward * harpoonRange;
 
             var newProjectile = Instantiate(harpoonProjectile, harpoonStartPos, Quaternion.identity);
+            Mirror.NetworkServer.Spawn(newProjectile.gameObject);
+
             newProjectile.Initialize(harpoonStartPos, haproonEndPos);
             newProjectile.transform.LookAt(haproonEndPos);
+
+            soundPlayer.PlayHarpoonShotSound();
         }
 
        // Vector3 rayCastStart = transform.position;
