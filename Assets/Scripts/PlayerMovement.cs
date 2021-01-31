@@ -285,11 +285,11 @@ public class PlayerMovement : Mirror.NetworkBehaviour
         //}
     }
 
-    private void ShootHarpoon()
+    [Mirror.Command]
+    private void CommandShootHarpoon()
     {
         float harpoonRange = 4;
-        if (actions.HasHarpoon && actions.ShootHarpoonAction())
-        {
+
             Vector3 harpoonStartPos = transform.position + Vector3.up;
             Vector3 haproonEndPos = harpoonStartPos + transform.forward * harpoonRange;
 
@@ -300,6 +300,25 @@ public class PlayerMovement : Mirror.NetworkBehaviour
             newProjectile.transform.LookAt(haproonEndPos);
 
             soundPlayer.PlayHarpoonShotSound();
+    }
+
+
+    private void ShootHarpoon()
+    {
+        float harpoonRange = 4;
+        if (actions.HasHarpoon && actions.ShootHarpoonAction())
+        {
+            CommandShootHarpoon();
+            //Vector3 harpoonStartPos = transform.position + Vector3.up;
+            //Vector3 haproonEndPos = harpoonStartPos + transform.forward * harpoonRange;
+
+            //var newProjectile = Instantiate(harpoonProjectile, harpoonStartPos, Quaternion.identity);
+            //Mirror.NetworkServer.Spawn(newProjectile.gameObject);
+
+            //newProjectile.Initialize(harpoonStartPos, haproonEndPos);
+            //newProjectile.transform.LookAt(haproonEndPos);
+
+            //soundPlayer.PlayHarpoonShotSound();
         }
 
        // Vector3 rayCastStart = transform.position;
