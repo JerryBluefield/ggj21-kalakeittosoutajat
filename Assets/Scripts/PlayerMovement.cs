@@ -294,6 +294,8 @@ public class PlayerMovement : Mirror.NetworkBehaviour
             Vector3 haproonEndPos = harpoonStartPos + transform.forward * harpoonRange;
 
             var newProjectile = Instantiate(harpoonProjectile, harpoonStartPos, Quaternion.identity);
+            Mirror.NetworkServer.Spawn(newProjectile.gameObject);
+
             newProjectile.Initialize(harpoonStartPos, haproonEndPos);
             newProjectile.transform.LookAt(haproonEndPos);
         }
