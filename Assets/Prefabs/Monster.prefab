@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  mistEffect: {fileID: 0}
+  mistEffect: {fileID: 619501095}
 --- !u!114 &5201578031889206586
 MonoBehaviour:
   m_ObjectHideFlags: 0
