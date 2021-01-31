@@ -52,10 +52,10 @@ public class PlayerMovement : Mirror.NetworkBehaviour
             {
                 Debug.Log("Failed to find obj ThirdPersonVirtualCamera");
             }
-            actions = GetComponent<PlayerActions>();
             UpdateVision();
             animator.SetFloat("Moving", 0f);
         }
+        actions = GetComponent<PlayerActions>();
     }
 
     // Update is called once per frame
