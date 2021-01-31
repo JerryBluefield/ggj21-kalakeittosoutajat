@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  mistEffect: {fileID: 619501095}
+  mistEffect: {fileID: 0}
 --- !u!114 &5201578031889206586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,11 +303,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  maxActions: 6
+  maxActions: 1
   harpoon: 1
   moveForward: 1
   turn: 1
-  shootHarpoon: 2
+  shootHarpoon: 1
   currentActions: 0
 --- !u!95 &5827633076599855023
 Animator:
