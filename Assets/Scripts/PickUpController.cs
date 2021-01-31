@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PickUpController : Mirror.NetworkBehaviour
+public class PickUpController : MonoBehaviour
 {
     public static PickUpController Instance;
 
@@ -27,7 +27,15 @@ public class PickUpController : Mirror.NetworkBehaviour
     private void Start()
     {
         pickUps = currentLevel.PickUpsParent.GetComponentsInChildren<PickUp>().ToList();
-        GameUI.Instance.InitializePickupCount(pickUps.Count);
+        GameUI gameUI = GameUI.Instance;
+        if (gameUI == null)
+        {
+            FindObjectOfType<GameUI>();
+        }
+        Debug.Log("Pickups : " + pickUps);
+        Debug.Log("pickUps.Count : " + pickUps.Count);
+        Debug.Log("GameUI : " + gameUI);
+        gameUI.InitializePickupCount(pickUps.Count);
         Debug.Log("Pickup count: " + pickUps.Count);
     }
 
