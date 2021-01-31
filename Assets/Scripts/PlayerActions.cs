@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System;
 
 public class PlayerActions : Mirror.NetworkBehaviour
 {
@@ -59,14 +60,6 @@ public class PlayerActions : Mirror.NetworkBehaviour
         //ReplenishActions();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            EndTurn();
-        }
-    }
-
     public void ReplenishActions()
     {
         currentActions = maxActions;
@@ -90,6 +83,21 @@ public class PlayerActions : Mirror.NetworkBehaviour
     public bool MoveForwardAction()
     {
         if(currentActions >= moveForward)
+        {
+            currentActions -= moveForward;
+            if (currentActions <= 0)
+            {
+                EndTurn();
+            }
+            return true;
+        }
+        GameUI.Instance.EndTurn();
+        return false;
+    }
+
+    public bool ShootHarpoonAction()
+    {
+        if (currentActions >= shootHarpoon)
         {
             currentActions -= moveForward;
             if (currentActions <= 0)
