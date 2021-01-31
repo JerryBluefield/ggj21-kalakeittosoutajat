@@ -11,6 +11,8 @@ public class Level : MonoBehaviour
     [SerializeField] private List<Mesh> columnModels;
 
     [SerializeField] private GameObject pickUpsParent;
+
+    [SerializeField] private int[] rotations = new int[] {0, 90, 180, 270};
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,8 @@ public class Level : MonoBehaviour
         {
             int randomIndex = Random.Range(0, floorModels.Count);
             floors[i].GetComponent<MeshFilter>().mesh = floorModels[randomIndex];
+            int randomRotation = Random.Range(0, 4);
+            floors[i].transform.rotation = Quaternion.Euler(0, rotations[randomRotation], 0);
         }
     }
 
@@ -40,6 +44,8 @@ public class Level : MonoBehaviour
             {
                 int randomIndex = Random.Range(0, columnModels.Count);
                 columns[i].GetComponent<MeshFilter>().mesh = columnModels[randomIndex];
+                int randomRotation = Random.Range(0, 4);
+                columns[i].transform.rotation = Quaternion.Euler(0, rotations[randomRotation], 0);
             }
         }
     }
