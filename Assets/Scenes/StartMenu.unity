@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.33371308, g: 0.4997731, b: 0.8330084, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -969,7 +969,7 @@ PrefabInstance:
     - target: {fileID: 712631753320042381, guid: 3d8de89959063d644bbbc7767baa084b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -217
+      value: -230
       objectReference: {fileID: 0}
     - target: {fileID: 712631753320042381, guid: 3d8de89959063d644bbbc7767baa084b,
         type: 3}
@@ -1384,6 +1384,7 @@ RectTransform:
   - {fileID: 1000272374}
   - {fileID: 1582619768}
   - {fileID: 1817180914}
+  - {fileID: 1513677693}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1801,7 +1802,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1142082849}
   m_LocalRotation: {x: -0, y: 0.16804682, z: -0, w: 0.98577905}
-  m_LocalPosition: {x: 0.62055963, y: 1, z: -8.782993}
+  m_LocalPosition: {x: 0.62055963, y: 0.684, z: -8.782993}
   m_LocalScale: {x: 0.45, y: 0.6, z: 0.12}
   m_Children:
   - {fileID: 1620915789}
@@ -1927,7 +1928,7 @@ PrefabInstance:
     - target: {fileID: 712631753320042381, guid: 3d8de89959063d644bbbc7767baa084b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -38
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 712631753320042381, guid: 3d8de89959063d644bbbc7767baa084b,
         type: 3}
@@ -2091,7 +2092,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 290}
+  m_AnchoredPosition: {x: 0, y: 259}
   m_SizeDelta: {x: 847.8828, y: 212.6781}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1435456066
@@ -2497,6 +2498,167 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a1793651b2b1ec479ae77b0d6d74b2d, type: 3}
+--- !u!1 &1513677692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1513677693}
+  - component: {fileID: 1513677695}
+  - component: {fileID: 1513677694}
+  m_Layer: 5
+  m_Name: Story
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1513677693
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513677692}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 846406517}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 126}
+  m_SizeDelta: {x: 847.8828, y: 212.6781}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1513677694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513677692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "Skye's grandma makes the most delicious fish soup. She always laughed
+    how she'll take the secret recipe to the grave with her. \r\n\r\nOne day she
+    asked little Skye to help her. \r\n\r\n\"Would you do your old grandma a favour?
+    Could you get grandma's secret ingredient from the old basement?\"\r\n\r\nNever
+    before was Skye allowed to enter the basement."
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 1b82690d539e84c4db5f16ba7174d486, type: 2}
+  m_sharedMaterial: {fileID: -7400782759849800602, guid: 1b82690d539e84c4db5f16ba7174d486,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 20
+  m_fontSizeBase: 20
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 150
+  m_fontStyle: 33
+  m_textAlignment: 1026
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: -35
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 1513677694}
+    characterCount: 340
+    spriteCount: 0
+    spaceCount: 62
+    wordCount: 58
+    linkCount: 0
+    lineCount: 9
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1513677695
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513677692}
+  m_CullTransparentMesh: 0
 --- !u!224 &1582619768 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 712631753320042381, guid: 3d8de89959063d644bbbc7767baa084b,
@@ -2890,7 +3052,7 @@ PrefabInstance:
     - target: {fileID: 712631753320042381, guid: 3d8de89959063d644bbbc7767baa084b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -128
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 712631753320042381, guid: 3d8de89959063d644bbbc7767baa084b,
         type: 3}
@@ -3184,7 +3346,7 @@ PrefabInstance:
     - target: {fileID: 712631753320042381, guid: 3d8de89959063d644bbbc7767baa084b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 46
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 712631753320042381, guid: 3d8de89959063d644bbbc7767baa084b,
         type: 3}
@@ -3726,7 +3888,7 @@ PrefabInstance:
     - target: {fileID: 3668834174680800752, guid: d74f876d10f536945aa6d4ff2bdefbdb,
         type: 3}
       propertyPath: m_Intensity
-      value: 23.873241
+      value: 15.915494
       objectReference: {fileID: 0}
     - target: {fileID: 7399061988073714962, guid: d74f876d10f536945aa6d4ff2bdefbdb,
         type: 3}
