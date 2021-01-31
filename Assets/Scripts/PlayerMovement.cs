@@ -305,6 +305,7 @@ public class PlayerMovement : Mirror.NetworkBehaviour
     private void Die()
     {
         Debug.Log("Child died.");
+        animator.SetTrigger("Die");
         //TODO: Play death animation -> wait for few seconds -> Transition to GameOver SCreen.
     }
 }

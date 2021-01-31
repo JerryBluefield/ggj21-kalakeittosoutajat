@@ -59,14 +59,6 @@ public class PlayerActions : Mirror.NetworkBehaviour
         //ReplenishActions();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            EndTurn();
-        }
-    }
-
     public void ReplenishActions()
     {
         currentActions = maxActions;
