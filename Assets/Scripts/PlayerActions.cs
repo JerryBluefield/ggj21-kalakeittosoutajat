@@ -28,13 +28,18 @@ public class PlayerActions : Mirror.NetworkBehaviour
     [ClientRpc]
     public void RpcChangeTurn()
     {
-        // This means that the other player ahs ended their turn.
-        ReplenishActions();
+        // This means that the other player has ended their turn.
+        if (isLocalPlayer)
+        {
+            GameUI.Instance.StartTurn();
+            ReplenishActions();
+        }
     }
 
     private void EndTurn()
     {
         // If this does not work for both players, try to below code instead.
+        GameUI.Instance.EndTurn();
         CommandEndTurn();
 
         // Call this when you want to end your turn.
@@ -51,7 +56,7 @@ public class PlayerActions : Mirror.NetworkBehaviour
 
     private void Start()
     {
-        ReplenishActions();
+        //ReplenishActions();
     }
 
     private void Update()
@@ -72,8 +77,13 @@ public class PlayerActions : Mirror.NetworkBehaviour
         if (currentActions >= turn)
         {
             currentActions -= turn;
+            if (currentActions <= 0)
+            {
+                EndTurn();
+            }
             return true;
         }
+        GameUI.Instance.EndTurn();
         return false;
     }
 
@@ -82,8 +92,13 @@ public class PlayerActions : Mirror.NetworkBehaviour
         if(currentActions >= moveForward)
         {
             currentActions -= moveForward;
+            if (currentActions <= 0)
+            {
+                EndTurn();
+            }
             return true;
         }
+        GameUI.Instance.EndTurn();
         return false;
     }
 }

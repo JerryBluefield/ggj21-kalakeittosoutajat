@@ -79,13 +79,17 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 564862460291335588, guid: ef5509b03ebe8ee43ac01c6e6c498a8e,
+  playerPrefab: {fileID: 564862460291335588, guid: b0665c018ca0c5c49b742919b9004048,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
-  childPrefab: {fileID: 0}
-  monsterPrefab: {fileID: 0}
+  spawnPrefabs:
+  - {fileID: 564862460291335588, guid: b0665c018ca0c5c49b742919b9004048, type: 3}
+  - {fileID: 564862460291335588, guid: 0c7202ffaade02b4b890ae053424cffb, type: 3}
+  monsterPrefab: {fileID: 564862460291335588, guid: b0665c018ca0c5c49b742919b9004048,
+    type: 3}
+  childPrefab: {fileID: 564862460291335588, guid: 0c7202ffaade02b4b890ae053424cffb,
+    type: 3}
   player1Spawn: {fileID: 0}
   player2Spawn: {fileID: 0}
 --- !u!114 &9020584917910501852

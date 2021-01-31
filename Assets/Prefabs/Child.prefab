@@ -302,7 +302,7 @@ MonoBehaviour:
   moveForward: 1
   turn: 0
   shootHarpoon: 2
-  currentActions: 0
+  currentActions: 6
 --- !u!95 &5827633076599855023
 Animator:
   serializedVersion: 3
