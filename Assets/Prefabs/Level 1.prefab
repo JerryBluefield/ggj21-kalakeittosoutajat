@@ -3154,6 +3154,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player1Spawn
       objectReference: {fileID: 0}
+    - target: {fileID: 8602602025590970695, guid: 7a4da112176ed87469fb5cbae8a45ed4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a4da112176ed87469fb5cbae8a45ed4, type: 3}
 --- !u!4 &1103689547946408496 stripped
@@ -22164,6 +22169,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2Spawn
       objectReference: {fileID: 0}
+    - target: {fileID: 28258351157970934, guid: df331842c52f48142bdc84869c253b21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1362602982527096365, guid: df331842c52f48142bdc84869c253b21,
         type: 3}
       propertyPath: m_RootOrder
@@ -22327,7 +22337,7 @@ PrefabInstance:
     - target: {fileID: 3284421167429728086, guid: 33c8ff8b4f9b8d045839c1b9c5a370ae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 3284421167429728086, guid: 33c8ff8b4f9b8d045839c1b9c5a370ae,
         type: 3}
