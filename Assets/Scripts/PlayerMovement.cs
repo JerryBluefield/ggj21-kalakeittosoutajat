@@ -298,6 +298,8 @@ public class PlayerMovement : Mirror.NetworkBehaviour
 
             newProjectile.Initialize(harpoonStartPos, haproonEndPos);
             newProjectile.transform.LookAt(haproonEndPos);
+
+            soundPlayer.PlayHarpoonShotSound();
         }
 
        // Vector3 rayCastStart = transform.position;

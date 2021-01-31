@@ -11,7 +11,20 @@ public class SoundPlayer : Mirror.NetworkBehaviour
     [SerializeField]
     AudioClip bumpSound;
 
+    [SerializeField]
+    AudioClip harpoonShotSound;
+
     internal void PlayBumpSound()
+    {
+        PlaySound(bumpSound);
+    }
+
+    internal void PlayHarpoonShotSound()
+    {
+        PlaySound(harpoonShotSound);
+    }
+
+    private void PlaySound(AudioClip audioClip)
     {
         if (!isLocalPlayer)
         {
@@ -19,9 +32,9 @@ public class SoundPlayer : Mirror.NetworkBehaviour
         }
         if (bumpSound == null)
         {
-            Debug.Log("bumpSound audioclip is null");
+            Debug.Log("sound: " + audioClip.name + " is null");
             return;
         }
-        GetComponent<AudioSource>().PlayOneShot(bumpSound);
+        GetComponent<AudioSource>().PlayOneShot(audioClip);
     }
 }
